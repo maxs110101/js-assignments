@@ -1,282 +1,326 @@
-'use strict'
-console.log('LECTURES SCRIPT🟩');
-// DATA TYPES
-/*
-let javascriptIsFun = true;
-console.log(javascriptIsFun);
+'use strict';
+console.log('LECTURES SCRIPT🟩')
 
-// console.log(typeof true);
-console.log(typeof javascriptIsFun);
-// console.log(typeof 23);
-// console.log(typeof 'Max');
+// ACTIVATING STRICT MODE 
 
-javascriptIsFun = 'YES!';
-console.log(typeof javascriptIsFun);
+let hasDriversLicense = false;
+const passTest = true;
 
-let year;
-console.log(year);
-console.log(typeof year);
+if (passTest) hasDriversLicense = true;
+if (hasDriversLicense) console.log("I can drive :D");
 
-year = 2000;
-console.log(typeof year);
+// const interface = "Audio";
+// const private = 5;
+// const if = 23; 
 
-console.log(typeof null);
-*/
+// FUNCTIONS 
 
-// LET, CONST AND VAR
-/*
-let age = 30;
-age = 31;
+function logger() {
+    console.log("My name is Max");
+}
 
-const birthYear = 2000;
-// birthYear = 2001;
-// const job;
+logger();
+logger();
+logger();
 
-var job = 'programmer';
-job = 'teacher';
-*/
+function fruitProcessor(apples, oranges) {
+    const juice = `Juice with ${apples} apples and ${oranges} oranges.`;
+    return juice;
+}
 
-// BASIC OPERATORS
-/*
-// Math operators
-const now = 2037;
-const ageMax = now - 2000;
-const ageSarah = now - 2018;
-console.log(ageMax, ageSarah);
+const appleJuice = fruitProcessor(5, 0);
+console.log(appleJuice);
+console.log(fruitProcessor(5, 0));
 
-console.log(ageMax * 2, ageMax / 10, 2 ** 3);
+const appleOrangeJuice = fruitProcessor(2,4);
+console.log(appleOrangeJuice);
 
-const firstName = 'Max';
-const lastName = 'Schmedtmann';
-console.log(firstName + ' ' + lastName);
+// FUNCTION DECLARATIONS VS. EXPRESSIONS
+// function declaration
+let age1 = calcAge1(1991);
 
-// Assignment operators
-let x = 10 + 5; // 15
-x += 10; // x = x + 10;
-x *= 4; // x = x * 4 = 100; 
-x++;
-x--;
-console.log(x);
+function calcAge1(birthYear) {
+    return 2037 - birthYear;
+}
 
-// Comprarison operators
-console.log(ageMax > ageSarah);
-console.log(ageSarah >= 18);
+// function expression
+const calcAge2 = function (birthYear) {
+    return 2037 - birthYear;
+}
+let age2 = calcAge2(1991);
 
-const isFullAge = ageSarah >= 18;
-*/
+console.log(age1, age2);
 
-// OPERATOR PRECEDENCE
-/*
-const now = 2037;
-const ageMax = now - 2000;
-const ageSarah = now - 2018;
+// Arrow function
+const calcAge3 = birthYear => 2037 - birthYear;
+let age3 = calcAge3(1991);
+console.log(age3);
 
-console.log(now - 2000 > now - 2018);
+const yearsUntilRetirement = (birthYear, firstName) => {
+    const age = 2037 - birthYear;
+    const retirement = 65 - age;
+    // return retirement;
+    return `${firstName} retires in ${retirement} years`;
+}
 
-let x, y;
-x = y = 25 - 10 - 5;
-console.log(x, y);
+console.log(yearsUntilRetirement(1991, "Max"));
+console.log(yearsUntilRetirement(1980, "Bob"));
 
-const averageAge = (ageMax + ageSarah) / 2; 
-console.log(ageMax, ageSarah, averageAge);
-*/
+// FUNCTIONS CALLING OTHER FUNCTIONS
 
-// STRINGS AND TEMPLATE LITERALS
-/*
-const firstName = 'Max';
-const job = 'cleaner'; 
-const birthYear = 2000;
-const year = 2037; 
+function cutFruitPieces(fruit) {
+    return fruit * 4;
+}
 
-const max = "I'm " + firstName + ', a ' + (year - birthYear) + ' years old ' + job + '!';
-console.log(max);
+function fruitProcessor(apples, oranges) {
+   const applePieces = cutFruitPieces(apples);
+   const orangePieces = cutFruitPieces(oranges);
 
-const manNew = `I'm ${firstName}, a ${year - birthYear} years old ${job}!`;
-console.log(manNew);
+    const juice = `Juice with ${applePieces} pieces of apple and ${orangePieces} pieces of orange.`;
+    return juice;
+}
 
-console.log(`Just a regular string...`);
+console.log(fruitProcessor(2, 3));
 
-console.log('String with \n\
-multiple \n\
-lines');
 
-console.log(`String 
-multiple
-lines`);
-*/
+// REVIEWING FUNCTIONS
+const calcAge = function(birthYear) {
+    return 2037 - birthYear;
+}
+const yearsUntilRetirement2 = function(birthYear, firstName) {
+    const age = calcAge(birthYear);
+    const retirement = 65 - age;
+    if(retirement > 0) {
+        console.log(`${firstName} retires in ${retirement} years`);
+        return retirement;
+    } else {
+        console.log(`${firstName} has already retired 🎉`);
+        return -1;
+    }
+    // return `${firstName} retires in ${retirement} years`;
+}
 
-// TAKING DECISIONS: if / else statements 
-/*
-const age = 15;
-if (age >= 18) {
-    console.log('Sarah can start driver license 🚗')
+console.log(yearsUntilRetirement2(1991, "Jonas"));
+console.log(yearsUntilRetirement2(1950, "Mike"));
+
+// INTRODUCTION TO ARRAYS
+const friend1 = 'Michael';
+const friend2 = 'Steven';
+const friend3 = 'Peter';
+
+const friends = ['Michael', 'Steven', 'Peter'];
+console.log(friends);
+
+const y = new Array(1991,1994, 2008, 2020);
+console.log(y);
+
+console.log(friends[0]);
+console.log(friends[2]);
+
+console.log(friends.length);
+console.log(friends[friends.length - 1]);
+
+friends[2] = 'Jay';
+console.log(friends);
+// friends = ['Bob', 'Alice'];
+
+const firstName = 'Jonas';
+const jonas = [firstName, 'Schedtmann', 2037 - 1991, 'teacher', friends];
+console.log(jonas);
+
+// Exercise 
+const years = [1990, 1967, 2002, 2010, 2018];
+
+age1 = calcAge(years[0]);
+age2 = calcAge(years[1]);
+age3 = calcAge(years[years.length - 1]);
+console.log(age1, age2, age3); 
+
+const ages = [calcAge(years[0]), calcAge(years[1]),calcAge(years[years.length - 1])];
+console.log(ages);
+
+// BASIC ARRAY OPERATIONS (METHODS)
+// Add elements
+const newLength = friends.push('Peter');
+console.log(friends);
+console.log(newLength);
+
+friends.unshift('John');
+console.log(friends);
+// Remove elements
+friends.pop(); // Last
+const popped = friends.pop();
+console.log(popped); 
+console.log(friends);
+
+friends.shift(); // First
+console.log(friends);
+
+console.log(friends.indexOf('Steven'));
+console.log(friends.indexOf('Bob'));
+
+friends.push(23);
+console.log(friends.includes('Steven'));
+console.log(friends.includes('Bob'));
+console.log(friends.includes(23));
+console.log(friends);
+
+if (friends.includes('Steven')) {
+    console.log('You have a friend called Steven');
+}
+
+// INTRODUCTION TO OBJECTS
+const jonasArray = [
+    'Jonas',
+    'Schmedtmann',
+    2037 - 1991,
+    'teacher',
+    ['Michael', 'Peter', 'Steven']
+];
+
+const jonasObject = {
+    firstName: 'Jonas', 
+    lastName: 'Schmedtmann',
+    age: 2037 - 1991,
+    job: 'teacher',
+    friends: ['Michael', 'Peter', 'Steven']
+};
+console.log(jonasObject);
+
+console.log(jonasObject.lastName);
+console.log(jonasObject['lastName']);
+
+const nameKey = 'Name';
+console.log(jonasObject['first' + nameKey]);
+console.log(jonasObject['last' + nameKey]);
+
+// console.log(jonas.'last' + nameKey);
+
+ const interestedIn = prompt('What do you want to know about Jonas? Chose between firstName, lastName, age, job and friends.');
+console.log(interestedIn);
+
+if(jonas[interestedIn]) {
+    console.log(jonasObject[interestedIn]);
 } else {
-    const yearsLeft = 18 - age;
-    console.log(`Sarah is too young. Wait another ${yearsLeft} years :)`);
-} 
-
-const birthYear = 2000; 
-let century;
-if (birthYear <= 2000) {
-    century = 20; 
-} else {
-    century = 21;
-}
-console.log(century);
-*/
-
-// TYPE CONVERSION AND COERCION
-// type conversion
-/*
-const inputYear = '1991'; 
-console.log(Number(inputYear) + 18);
-
-console.log(Number('Max'));
-console.log(typeof NaN);
-
-console.log(String(23), 23);
-
-// type coercion 
-console.log("I'm " + 23 + " years old"); 
-console.log('23' - '10' - 3); 
-console.log('23' / '2');
-
-let n = '1' + 1;
-n = n - 1; 
-console.log(n);
-*/
-
-// TRUTHY AND FALSY VALUES 
-/*
-console.log(Boolean(0));
-console.log(Boolean(undefined));
-console.log(Boolean("Max"));
-console.log(Boolean({}));
-console.log(Boolean(''));
-
-const money = 0;
-if(money) {
- console.log("Don't spend it all ;)")
-} else {
- console.log("You should get a job!")
+    console.log('Wrong request! Chose between firstName, lastName, age, job and friends.')
 }
 
-let height = 0;
-if (height) {
-    console.log('YAY! Height is defined')
-} else {
-    console.log('Height is UNDEFINED')
+jonasObject.location = 'Portugal';
+jonasObject['Twitter'] = '@jonasschmedtman';
+console.log(jonasObject);
+
+// Challenge 
+// 'Jonas has 3 friends and his best friend is called Michael'
+const friendsOfJonas = `${jonasObject['firstName']} has ${jonasObject.friends.length} and his best friend is called ${jonasObject.friends[0]}.`;
+console.log(friendsOfJonas);
+
+// OBJECTS METHODS
+
+const jonasObject2 = {
+    firstName: 'Jonas',
+    lastName: 'Schmedtmann',
+    birthYear: 1991,
+    job: 'teacher',
+    friends: ['Michael', 'Peter', 'Steven'],
+    hasDriversLicense: true,
+    
+    // calcAge: function (birthYear) {
+    //     return 2037 - birthYear;
+    // }
+
+    // calcAge: function () {
+    //     // console.log(this);
+    //     return 2037 - this.birthYear;
+    // }
+
+        calcAge: function () {
+        this.age = 2037 - this.birthYear;
+        return this.age; 
+    },
+        jonasInfo: function () {
+            return (`${this.firstName} is ${this.calcAge()}-year old ${this.job} and he has ${this.hasDriversLicense ? 'a' : 'not'} driver's license`);
+        }
+        
+};
+
+console.log(jonasObject2.calcAge());
+console.log(jonasObject2.age);
+console.log(jonasObject2.age);
+console.log(jonasObject2.age);
+
+// console.log(jonasObject2['calcAge'](1991));
+
+// Challenge 
+console.log(jonasObject2.jonasInfo());
+
+// ITERATION: THE FOR LOOP
+// console.log('Lifting weights repetition 1 🏋️‍♂️');
+
+// for loop keeps running while condition is TRUE
+for (let rep = 1; rep <= 3; rep++) {
+    console.log(`Lifting weights repetition ${rep} 🏋️‍♂️`);
 }
-*/
 
-// EQUALITY OPERATORS
-/*
-const age = 18;
-if(age === 18) console.log("You just became an adult :D (strict)");
-if(age == 18) console.log("You just became an adult :D (loose)");
+// LOOPING ARRAYS, BREAKING AND CONTINUING
 
-const favourite = Number(prompt("What's your favourite number?"));
-console.log(favourite);
-console.log(typeof favourite);
+const types = [];
 
-if (favourite === 23) {
-    console.log("Cool! 23 is an amazing number!")
-} else if (favourite === 7) {
-console.log("7 is also a cool number");
-} else if (favourite === 9) {
-console.log("9 is also a cool number");
+for (let i = 0; i < jonasArray.length; i++) {
+    // Reading from jonas array
+    console.log(jonasArray[i], typeof jonas[i]);
+    // Filling types array
+    // types[i] = typeof jonasArray[i];
+    types.push(typeof jonasArray[i]);
+ }
+
+ console.log(types);
+
+const years2 = [1991, 2007, 1969, 2020];
+const ages2 = [];
+
+for (let i = 0; i < years2.length; i++) {
+    ages2.push(2037 - years2[i]);
 }
-else {
-    console.log("Number is not 23 or 7 or 9")
+console.log(ages2);
+
+// continue and break
+console.log('--- ONLY STRINGS ---');
+for (let i = 0; i < jonasArray.length; i++) {
+    if (typeof jonasArray[i] !== 'string') continue;
+    console.log(jonasArray[i], typeof jonasArray[i]);
+ }
+
+ console.log('--- BREAK WITH NUMBER ---');
+for (let i = 0; i < jonasArray.length; i++) {
+    if (typeof jonasArray[i] === 'number') break;
+
+    console.log(jonasArray[i], typeof jonasArray[i]);
+ }
+
+// LOOPING BACKWARDS AND LOOPS IN LOOPS 
+for (let i = jonasArray.length - 1; i >= 0; i-- ) {
+    console.log(i, jonasArray[i]);
 }
 
-if (favourite !== 23) console.log("Why not 23?");
-*/
+for (let exercise = 1; exercise < 4; exercise++) {
+    console.log(`--------------- Starting exercise ${exercise}`);
 
-// LOGICAL OPERATORS
-/*
-const hasDriversLicense = true; // A
-const hasGoodVision = true; // B 
-
-console.log(hasDriversLicense && hasGoodVision);
-console.log(hasDriversLicense  || hasGoodVision);
-console.log(!hasDriversLicense);
-
-// if (hasDriversLicense && hasGoodVision) {
-//     console.log("Sarah is able to drive!");
-// } else {
-//     console.log("Someone else should drive...");
-// }
-
-const isTired = false; // C
-console.log(hasDriversLicense && hasGoodVision && isTired);
-
-if (hasDriversLicense && hasGoodVision && !isTired) {
-    console.log("Sarah is able to drive!");
-} else {
-    console.log("Someone else should drive...");
+    for (let rep = 1; rep < 4; rep++) {
+        console.log(`Exercise ${exercise}: lifting weights repetition ${rep} 🏋️‍♂️`);
+    }
 }
-*/
 
-// THE SWITCH STATEMENT 
-/*
-const day = "monday";
-
-switch(day) {
-    case "monday": // day === "monday"
-        console.log("Plan course structure");
-        console.log("Go to coding meetup");
-        break;
-    case "tuesday":
-        console.log("Prepare theory videos");
-        break;
-    case "wednesday":
-    case "thursday":
-        console.log("Write code examples");
-        break;
-    case "friday":
-        console.log("Record videos");
-        break;
-    case "saturday":
-    case "sunday":
-        console.log("Enjoy the weekend :D");
-        break;
-    default:
-        console.log("Not a valid day!");
-} 
-
-if (day === "monday") {
-    console.log("Plan course structure");
-    console.log("Go to coding meetup");
-} else if (day === 'tuesday') {
-    console.log("Prepare theory videos");
-} else if (day === 'wenesday' || day === 'thursday') {
-    console.log("Write code examples");
-} else if (day === 'friday') {
-    console.log('Record videos');
-} else if (day === 'saturday' || day === 'sunday') {
-    console.log('Enjoy the weekend :D');
-} else {
-    console.log('Not a valid day!');
+// THE WHILE LOOP
+let rep = 1; 
+while (rep <= 3) {
+console.log(`WHILE: lifting weights repetition ${rep}🏋️`); 
+rep++;
 }
-*/
 
-// THE CONDITIONAL (TERNARY) OPERATOR
-/*
-const age = 15;
-age >= 18 ? console.log("I like to drink wine🍷") : console.log("I like to drink water💧");
+let dice = Math.trunc(Math.random() * 6) + 1; 
 
-const drink = age >= 18 ? "wine🍷" : "water💧";
-console.log(drink);
-
-let drink2;
-if (age >= 18) {
-    drink2 = "wine🍷";
-} else {
-    drink2 = "water💧";
+while (dice !== 6) {
+    console.log(`You rolled a ${dice}`);
+    dice = Math.trunc(Math.random() * 6) + 1;
+    if (dice === 6) console.log ('Loop is about to end...');
 }
-console.log(drink2);
-
-console.log(`I like to drink ${age >= 18 ? "wine🍷" : "water💧"
-}`);
-*/
